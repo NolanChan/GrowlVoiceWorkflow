@@ -24,6 +24,7 @@ import getpass
 import atom
 import gdata.contacts.data
 import gdata.contacts.client
+import DictToFile
 
 
 class ContactsSample(object):
@@ -99,6 +100,7 @@ class ContactsSample(object):
                   through a feed.
     """
     ctr = 0
+    i = 1
     while feed:
       # Print contents of current feed
       ctr = print_method(feed=feed, ctr=ctr)
@@ -106,13 +108,16 @@ class ContactsSample(object):
       next = feed.GetNextLink()
       feed = None
       if next:
-        if self.PromptOperationShouldContinue():
-          # Another feed is available, and the user has given us permission
-          # to fetch it
-          feed = self.gd_client.GetContacts(uri=next.href)
+        if i%3 != 0:
+          feed = self.gd_client.GetContacts(uri = next.href)
         else:
-          # User has asked us to terminate
-          feed = None
+          if self.PromptOperationShouldContinue():
+            # Another feed is available, and the user has given us permission
+            # to fetch it
+            feed = self.gd_client.GetContacts(uri=next.href)
+          else:
+            # User has asked us to terminate
+            feed = None
 
   def PromptOperationShouldContinue(self):
     """ Display a "Continue" prompt.
@@ -131,10 +136,10 @@ class ContactsSample(object):
       elif input is 'Y' or input is 'y' or input is '':
         return True
 
-  def ListAllContacts(self):
+  def ListAllContactsWithNumbers(self):
     """Retrieves a list of contacts and displays name and primary email."""
     feed = self.gd_client.GetContacts()
-    self.PrintPaginatedFeed(feed, self.PrintContactsFeed)
+    self.PrintPaginatedFeed(feed, self.PrintContactsWithNumbersFeed)
 
   def PrintGroupsFeed(self, feed, ctr):
     if not feed.entry:
@@ -155,37 +160,72 @@ class ContactsSample(object):
         print '    Extended Property %s: %s' % (extended_property.name, value)
     return len(feed.entry) + ctr
 
-  def PrintContactsFeed(self, feed, ctr):
+  def PrintContactsWithNumbersFeed(self, feed, ctr):
     if not feed.entry:
       print '\nNo contacts in feed.\n'
       return 0
     for i, entry in enumerate(feed.entry):
+      if not entry.phone_number: continue
       if not entry.name is None:
         family_name = entry.name.family_name is None and " " or entry.name.family_name.text
         full_name = entry.name.full_name is None and " " or entry.name.full_name.text
         given_name = entry.name.given_name is None and " " or entry.name.given_name.text
-        print '\n%s %s: %s - %s' % (ctr+i+1, full_name, given_name, family_name)
+        # print '\n%s %s: %s - %s' % (ctr+i+1, full_name, given_name, family_name)
+        print '\n%s %s' % (ctr+i+1, full_name)
       else:
         print '\n%s %s (title)' % (ctr+i+1, entry.title.text)
-      if entry.content:
-        print '    %s' % (entry.content.text)
-      for p in entry.structured_postal_address:
-        print '    %s' % (p.formatted_address.text)
+      # if entry.content:
+      #   print '    %s' % (entry.content.text)
+      # for p in entry.structured_postal_address:
+      #   print '    %s' % (p.formatted_address.text)
       # Display the group id which can be used to query the contacts feed.
-      print '    Group ID: %s' % entry.id.text
+      # print '    Group ID: %s' % entry.id.text
       if entry.phone_number:
         for number in entry.phone_number:
-          print "Phone number type : " + number.rel[33:] +  " and Phone number " + number.text
+          print number.rel[33:] +  ": " + number.text
       # Display extended properties.
-      for extended_property in entry.extended_property:
-        if extended_property.value:
-          value = extended_property.value
-        else:
-          value = extended_property.GetXmlBlob()
-        print '    Extended Property %s: %s' % (extended_property.name, value)
-      for user_defined_field in entry.user_defined_field:
-        print '    User Defined Field %s: %s' % (user_defined_field.key, user_defined_field.value)
+    #   for extended_property in entry.extended_property:
+    #     if extended_property.value:
+    #       value = extended_property.value
+    #     else:
+    #       value = extended_property.GetXmlBlob()
+    #     print '    Extended Property %s: %s' % (extended_property.name, value)
+    #   for user_defined_field in entry.user_defined_field:
+    #     print '    User Defined Field %s: %s' % (user_defined_field.key, user_defined_field.value)
     return len(feed.entry) + ctr
+
+  def PrintAllContactsWithNumbers(self):
+    allContacts = {}
+    query = gdata.contacts.client.ContactsQuery()
+    query.max_results = 1000
+    feed = self.gd_client.GetContacts(q=query)
+    if not feed.entry:
+      print '\nNo contacts in feed.\n'
+      return 0
+    for i, entry in enumerate(feed.entry):
+      if not entry.phone_number: continue
+      if not entry.name is None:
+        family_name = entry.name.family_name is None and " " or entry.name.family_name.text
+        full_name = entry.name.full_name is None and " " or entry.name.full_name.text
+        given_name = entry.name.given_name is None and " " or entry.name.given_name.text
+        # print '\n%s %s: %s - %s' % (ctr+i+1, full_name, given_name, family_name)
+      #   print '\n%s %s' % (ctr+i+1, full_name)
+      # else:
+      #   print '\n%s %s (title)' % (ctr+i+1, entry.title.text)
+
+      numbers = []
+      if entry.phone_number:
+        for phone_number_obj in entry.phone_number:
+          number = phone_number_obj.text
+          relation = phone_number_obj.rel[33:]
+          digits = ''.join(n for n in number if n.isdigit())
+          numbers.append((relation, digits))  
+          # print number.rel[33:] +  ": " + number.text
+      allContacts[full_name] = numbers
+
+    w = DictToFile.Writer()
+    w.writing('ContactNumbers.txt', allContacts)
+
 
   def ListAllGroups(self):
     feed = self.gd_client.GetGroups()
@@ -252,7 +292,7 @@ class ContactsSample(object):
   def PrintMenu(self):
     """Displays a menu of options for the user to choose from."""
     print ('\nContacts Sample\n'
-           '1) List all of your contacts.\n'
+           '1) List all of your contacts who have phone numbers.\n'
            '2) Create a contact.\n'
            '3) Query contacts on updated time.\n'
            '4) Modify a contact.\n'
@@ -294,7 +334,7 @@ class ContactsSample(object):
         choice = self.GetMenuChoice(8)
 
         if choice == 1:
-          self.ListAllContacts()
+          self.PrintAllContactsWithNumbers()
         elif choice == 2:
           self.CreateMenu()
         elif choice == 3:
