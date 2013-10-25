@@ -1,4 +1,7 @@
 import DictToFile
+import FuzzyDict
+
+f = DictToFile.FuzzyDict()
 
 w = DictToFile.Writer()
 

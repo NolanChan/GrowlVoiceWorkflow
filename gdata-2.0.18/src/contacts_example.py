@@ -375,11 +375,11 @@ def main():
 
   while not user:
     print 'NOTE: Please run these tests only with a test account.'
-    # user = raw_input('Please enter your email address: ')
-    user = "onlyforthetrinity@gmail.com"
+    user = raw_input('Please enter your email address: ')
+    
   while not pw:
-    # pw = getpass.getpass()
-    pw = "FcBcwalnut911"
+    pw = getpass.getpass()
+    
     if not pw:
       print 'Password cannot be blank.'
 
