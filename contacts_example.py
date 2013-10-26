@@ -194,7 +194,7 @@ class ContactsSample(object):
     #     print '    User Defined Field %s: %s' % (user_defined_field.key, user_defined_field.value)
     return len(feed.entry) + ctr
 
-  def PrintAllContactsWithNumbers(self):
+  def WriteAllContactsWithNumbers(self):
     allContacts = FuzzyDict.FuzzyDict()
     query = gdata.contacts.client.ContactsQuery()
     query.max_results = 1000
@@ -331,10 +331,11 @@ class ContactsSample(object):
 
         self.PrintMenu()
 
-        choice = self.GetMenuChoice(8)
+        choice = self.GetMenuChoice(8
+        
 
         if choice == 1:
-          self.PrintAllContactsWithNumbers()
+          self.WriteAllContactsWithNumbers()
         elif choice == 2:
           self.CreateMenu()
         elif choice == 3:

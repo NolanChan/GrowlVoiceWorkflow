@@ -17,8 +17,30 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>277DD640-F1C8-4796-85EE-B984F135E61D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FFBDAAEF-4E46-46FF-95D6-D1F3FDD4949F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>7C24829E-6EDA-48DF-93AE-4C238B4A6355</key>
 		<array/>
+		<key>FFBDAAEF-4E46-46FF-95D6-D1F3FDD4949F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CCEB1D92-4FFA-410D-BFAD-2ACECAE10ABD</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
 	<key>createdby</key>
 	<string>Nolan Chan</string>
@@ -30,23 +52,6 @@
 	<string>Growl Voice</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>script</key>
-				<string>open "{query}"</string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>7C24829E-6EDA-48DF-93AE-4C238B4A6355</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -76,6 +81,84 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>open "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7C24829E-6EDA-48DF-93AE-4C238B4A6355</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>updatecontacts</string>
+				<key>subtext</key>
+				<string>Connects to Google Account</string>
+				<key>text</key>
+				<string>Update Contact List</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>277DD640-F1C8-4796-85EE-B984F135E61D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>script</key>
+				<string>python UpdateContacts.py</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FFBDAAEF-4E46-46FF-95D6-D1F3FDD4949F</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>title</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>CCEB1D92-4FFA-410D-BFAD-2ACECAE10ABD</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -86,10 +169,25 @@
 			<key>ypos</key>
 			<real>60</real>
 		</dict>
+		<key>277DD640-F1C8-4796-85EE-B984F135E61D</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
 		<key>7C24829E-6EDA-48DF-93AE-4C238B4A6355</key>
 		<dict>
 			<key>ypos</key>
 			<real>60</real>
+		</dict>
+		<key>CCEB1D92-4FFA-410D-BFAD-2ACECAE10ABD</key>
+		<dict>
+			<key>ypos</key>
+			<real>230</real>
+		</dict>
+		<key>FFBDAAEF-4E46-46FF-95D6-D1F3FDD4949F</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
 		</dict>
 	</dict>
 	<key>webaddress</key>
