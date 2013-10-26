@@ -66,9 +66,9 @@
 				<key>script</key>
 				<string>python moduleTester.py "{query}"</string>
 				<key>subtext</key>
-				<string>Open Up Growl with "{query}"</string>
+				<string>Text "{query}"</string>
 				<key>title</key>
-				<string>Open Up Growl</string>
+				<string>Growl Voice</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>

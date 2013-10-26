@@ -41,7 +41,7 @@ contactsFuzzyDictionary = w.reading('ContactNumbers.txt')
 if str(contactsFuzzyDictionary[name][0:5]) == "Sorry":
 	print XMLTemplateCreator().createXMLfromVerse("None", "None")
 
-
+	
 # test
 x = XMLTemplateCreator()
 XMLString = ""

@@ -7,6 +7,21 @@ import gdata.contacts.client
 import DictToFile
 import FuzzyDict
 
+"""
+All New Users
+--------------
+Put your email and password into the respective variables; this is used to retrieve your contact info
+If you feel uncomfortable with your email and password in this plain text file, you can delete it after you update your contacts
+
+Example:
+email = "user@gmail.com"
+password = "1234567890"
+
+"""
+
+email = ""
+password = ""
+
 def WriteAllContactsWithNumbers():
 
     allContacts = FuzzyDict.FuzzyDict()
@@ -36,8 +51,6 @@ def WriteAllContactsWithNumbers():
     return allContacts
 
 
-email = ""
-password = ""
 not_authenticated = False
 
 try:
