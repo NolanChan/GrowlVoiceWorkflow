@@ -37,10 +37,11 @@ KeyError: "'There'. closest match: 'hello' with ratio 0.400"
 __revision__ = "$Rev$"
 
 import difflib
+import string
 
 class FuzzyDict(dict):
     "Provides a dictionary that performs fuzzy lookup"
-    def __init__(self, items = None, cutoff = .6):
+    def __init__(self, items = None, cutoff = .4):
         """Construct a new FuzzyDict instance
 
         items is an dictionary to copy items from (optional)
@@ -94,12 +95,15 @@ class FuzzyDict(dict):
             # this it is defintely not in the dictionary
             try:
             # calculate the match value
-                ratio = ratio_calc.ratio()
+                if string.capitalize(lookfor) in key[:len(lookfor)]:
+                    ratio = 1
+                else:
+                    ratio = ratio_calc.ratio()
             except TypeError:
                 break
 
             # if this is the best ratio so far - save it and the value
-            if ratio > best_ratio:
+            if ratio >= best_ratio:
                 #return a list of best matches
                 best_ratio = ratio 
                 best_key = key

@@ -60,7 +60,7 @@
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>keyword</key>
-				<string>growlvoice</string>
+				<string>gv</string>
 				<key>runningsubtext</key>
 				<string>Opening Up Growl</string>
 				<key>script</key>
