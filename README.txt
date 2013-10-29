@@ -27,10 +27,24 @@ using Google's Gdata skeleton with a slight change to pull phone numbers) but I'
 
 So the steps to preform before calling this workflow is:
 
-1) Get into the GrowlVoice Alfred Workflow folder: Right Click on the GrowlVoice section in Alfred Preferences and choose show in finder
-2) Open up UpdateContacts.py in your favorite code editor; The TextEdit application should be fine
-3) Put your email and password inbetween the quotes on 
+  1) Get into the GrowlVoice Alfred Workflow folder: Right Click on the GrowlVoice section in Alfred Preferences and choose show in finder
+  2) Open up UpdateContacts.py in your favorite code editor; The TextEdit application should be fine
+  3) Put your email and password in-between the quotes: 
+  
+  email = ""
+  password = ""
+  
+  4) Save the file
+  5) Run in the alfred box: UpdateContacts
+  6) If you are connected to the internet and you put in your email and password correctly, you should receive a notification that everything has worked
+  7) You're good to go!
+  
+2) gv [name of person]
 
-email = ""
+This keyword, followed by the name of the person you want to text, should bring down options of people you can choose to text. 
+When you choose a person to text, the growlvoice window should open up, and the person's number should be in the addresse' box.
 
-password = ""
+YOU MUST PRESS TAB BEFORE YOU START TYPING A MESSAGE IN GROWLVOICE, OR ELSE IT'LL JUST CLEAR THE NUMBER.
+You'll know what I mean when you start typing. :)
+
+
