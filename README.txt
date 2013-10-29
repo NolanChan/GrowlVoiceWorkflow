@@ -15,8 +15,8 @@ There are two keyword calls in the workflow at the moment:
 
 1) UpdateContacts [no arguements]
 
-So before you use this keyword, there are a few steps you have to follow. The main idea of this script is to pull the first 1000 phone numbers
-you have on your google account, and store them on your hard drive as a text file. 
+So before you use this keyword, there are a few steps you have to follow. 
+The main idea of this script is to pull the first 1000 phone numbers you have on your google account, and store them on your hard drive as a text file. 
 
 ***
 Disclaimer:
