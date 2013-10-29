@@ -23,6 +23,7 @@ Disclaimer:
 You will also need to input your username and password into the python file for this to work. 
 I know this sounds a little shady, and I promise that my code doesn't do anything weird (since I'm basically
 using Google's Gdata skeleton with a slight change to pull phone numbers) but I'm including this here as a warning.
+After you finish using the UpdateContacts function, feel free to remove your username and password
 ***
 
 So the steps to preform before calling this workflow is:
