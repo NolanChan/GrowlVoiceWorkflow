@@ -5,9 +5,8 @@ V 0.1
 
 Hi everyone,
 
-I've created a GrowlVoice Alfred Workflow. It honestly doesn't save you that much time, 
-since opening GrowlVoice takes about half a second with a shortcut,
-but things are always more fun to do in Alfred!
+I've created a GrowlVoice Alfred Workflow. With this workflow, you can pull your Google Voice Contacts 
+from off your online account, and easily search through them in your alfred search bar. 
 
 So down to business:
 
