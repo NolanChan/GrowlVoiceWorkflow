@@ -1,3 +1,6 @@
+GrowlVoice has now been deprecated for good https://twitter.com/GrowlVoice
+Thanks for all the support, and thanks GrowlVoice!
+
 GrowlVoiceWorkflow
 ==================
 
